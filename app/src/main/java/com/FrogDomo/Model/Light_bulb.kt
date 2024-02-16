@@ -1,8 +1,7 @@
 package com.FrogDomo.Model
 
-class Fan(
+class Light_bulb(
     var active: Boolean,
-    var speed: Int,
+    var color: String,
 
 )
-

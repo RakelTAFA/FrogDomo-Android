@@ -10,7 +10,7 @@ import retrofit2.http.PUT
 
 interface ApiService {
     @GET("users/{id}")
-    suspend fun getUserById(@Path("id") id : Int): Response<User>
+    suspend fun getUserById(@Path("id") id: String): Response<User>
 
     @POST("users")
     suspend fun createUser(user: User)
@@ -19,6 +19,6 @@ interface ApiService {
     suspend fun login(@Body loginRequest: LoginRequest): Response<String>
 
     @PUT("users/{id}")
-    suspend fun updateConfig(user: User)
+    suspend fun updateConfig(@Body user: User): Response<User>
 
 }

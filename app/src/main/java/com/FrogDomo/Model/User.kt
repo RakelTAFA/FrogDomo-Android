@@ -1,14 +1,13 @@
 package com.FrogDomo.Model
 
 
-import java.io.Serializable
-
 class User(
+    var _id: String,
     var username: String,
     var email: String,
     var password: String,
-    var lampe: Lampe,
+    var light_bulb: Light_bulb,
     var fan: Fan,
     var alarm: Alarm,
-    var portail: Int,
+    var portal: Float,
 )

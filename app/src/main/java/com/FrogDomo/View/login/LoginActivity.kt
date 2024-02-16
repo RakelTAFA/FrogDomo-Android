@@ -62,8 +62,7 @@ class LoginActivity : AppCompatActivity() {
                     if (loginSuccess) {
                         Toast.makeText(this, "OK", Toast.LENGTH_LONG).show()
                         // navigate to main activity
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        finish()
                     } else {
                         Toast.makeText(this, "Email ou mot de passe incorrect", Toast.LENGTH_LONG).show()
                     }

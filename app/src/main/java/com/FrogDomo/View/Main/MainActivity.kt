@@ -1,5 +1,6 @@
 package com.FrogDomo.View.Main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -9,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.FrogDomo.R
+import com.FrogDomo.View.login.LoginActivity
 import com.FrogDomo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         this.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val changePage = Intent(this, LoginActivity::class.java)
+        startActivity(changePage)
 
         setSupportActionBar(binding.toolbar)
 

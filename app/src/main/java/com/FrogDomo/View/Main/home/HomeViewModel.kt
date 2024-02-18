@@ -45,5 +45,20 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
+    fun GetUser(){
+        viewModelScope.launch {
+            try {
+                UserRepository.currentUser.postValue(
+                    UserRepository.currentUser.value?.let {
+                        ApiClient.apiService.getUserById(
+                            it._id
+                        ).body()
+                    }
+                )
+            } catch (e: Exception) {
+                Log.e("test", e.toString())
+            }
+        }
+    }
 
 }

@@ -1,13 +1,51 @@
 package com.FrogDomo.View.Main.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.FrogDomo.api.ApiClient
+import com.FrogDomo.repository.UserRepository
+import kotlinx.coroutines.launch
 
 class DashboardViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    fun setColor(bulblight: String) {
+        viewModelScope.launch {
+            try{
+                val user = UserRepository.currentUser.value
+                if (user != null) {
+                    user.light_bulb.active = true
+                    user.light_bulb.color = bulblight
+                    }
+                val response = user?.let { ApiClient.apiService.updateConfig(it) }
+                if (response != null) {
+                    if (response.isSuccessful){
+                        Log.e("success", response.body().toString())
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("exception", e.toString())
+            }
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun setFanspeed(speed: Int) {
+        viewModelScope.launch {
+            try{
+                val user = UserRepository.currentUser.value
+                if (user != null) {
+                    user.fan.active = true
+                    user.fan.speed = speed
+                }
+                val response = user?.let { ApiClient.apiService.updateConfig(it) }
+                if (response != null) {
+                    if (response.isSuccessful){
+                        Log.e("success", response.body().toString())
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("exception", e.toString())
+            }
+        }
+    }
 }
